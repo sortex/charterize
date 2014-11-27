@@ -1305,7 +1305,7 @@
 					borderWidth: 1,
 					backgroundColor: '#FFFFFF'
 				},
-				//colors: [ '#bce810', '#fc6d4a', '#15bcb4', '#fba433', '#cc66a7', '#ffee18', '#b9b9b9', '#00716c', '#678102', '#656565' ],
+				colors: [ 'dodgerblue', '#0DDDAB', 'gold', 'dimgray', '#cc66a7', '#ffee18', '#b9b9b9', '#00716c', '#678102', '#656565' ],
 				title: { text: '' },
 				subtitle: { text: '' },
 				xAxis: {
