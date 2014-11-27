@@ -19,7 +19,7 @@
 		query:       {},
 		url:         '',
 		type:        'column',
-		types:       [ 'pie', 'column', 'bar', 'line', 'area' ],
+		types:       [ 'pie', 'column', 'bar', 'line' ],
 		/*margin: {
 				pie:    [ 40, 100, 40, 100 ],
 				column: [ 40, 50, 150, 70 ],
@@ -48,7 +48,6 @@
 			},
 			data:   [],
 			line:   { data: [] },
-			area:   { data: [] },
 			column: { data: [] },
 			bar:    { data: [] },
 			pie:    { data: [], grouping: true },
@@ -60,7 +59,6 @@
 		language:    'en',
 		lang: {
 			en: {
-				area_title:   'Area Chart',
 				line_title:   'Line Chart',
 				column_title: 'Column Chart',
 				bar_title:    'Bar Chart',
@@ -1154,32 +1152,6 @@
 						}
 					}
 				},
-				area: {
-					tooltip: {
-						formatters: {
-							unit: function (settings) {
-								var name = this.series.name.replace('Ga:', ''),
-									unit = $.isPlainObject(settings.unit) ? settings.unit[name] || '' : settings.unit,
-									unitleft = $.isPlainObject(settings.unitleft) ? settings.unitleft[name] || '' : settings.unitleft;
-
-								return '<span style="font-size:10px">'+this.x+'</span><br/>'
-									+'<span style="color:#4a4a4a">'+(name.charAt(0).toUpperCase() + name.slice(1))+'</span>: '
-									+'<b>'+unitleft+Highcharts.numberFormat(this.y, settings.decimals).replace(/\.0+$/,'')+unit+'</b>';
-							}
-						}
-					},
-					data_labels: {
-						formatters: {
-							unit: function (settings) {
-								if ( ! this.y) return '';
-								var name = this.series.name.replace(/ /g, '_').toLowerCase(),
-									unit = $.isPlainObject(settings.unit) ? settings.unit[name] || '' : settings.unit,
-									unitleft = $.isPlainObject(settings.unitleft) ? settings.unitleft[name] || '' : settings.unitleft;
-								return unitleft+Highcharts.numberFormat(this.y, settings.decimals).replace(/\.0+$/,'')+unit;
-							}
-						}
-					}
-				},
 				bar: {
 					tooltip: {
 						formatters: {
@@ -1330,10 +1302,6 @@
 						dataLabels: { enabled: true, color: '#383838', style: { font: 'normal 11px Verdana, sans-serif' } },
 						enableMouseTracking: true
 					},
-					area: {
-						dataLabels: { enabled: true, color: '#383838', style: { font: 'normal 11px Verdana, sans-serif' } },
-						enableMouseTracking: true
-					},
 					bar: {
 						dataLabels: { enabled: true, color: '#383838', style: { font: 'normal 11px Verdana, sans-serif' } },
 						enableMouseTracking: true
@@ -1360,4 +1328,3 @@
 	$.fn.chart.extensions = {};
 
 })(jQuery);
-
