@@ -758,7 +758,9 @@
 			// Process array of strings
 			if ($.isArray(fields)) {
 				$.each(fields, function (i, field_name) {
-					var set = { name: field_name, data: [] };
+					var name = field_name.replace('ga:', ''),
+						set = { name: (name.charAt(0).toUpperCase() + name.slice(1)), data: [] };
+
 					set.name = set.name.replace(/_/g, ' ').replace(/^([a-z])|\s+([a-z])/g, function ($1) { return $1.toUpperCase() });
 					$.each(payload, function (i, record) {
 						set.data.push(+(record[field_name]));
@@ -1132,12 +1134,12 @@
 					tooltip: {
 						formatters: {
 							unit: function (settings) {
-								var name = this.series.name.replace('Ga:', ''),
+								var name = this.series.name,
 									unit = $.isPlainObject(settings.unit) ? settings.unit[name] || '' : settings.unit,
 									unitleft = $.isPlainObject(settings.unitleft) ? settings.unitleft[name] || '' : settings.unitleft;
 
 								return '<span style="font-size:10px">'+this.x+'</span><br/>'
-									+'<span style="color:#4a4a4a">'+(name.charAt(0).toUpperCase() + name.slice(1))+'</span>: '
+									+'<span style="color:#4a4a4a">'+name+'</span>: '
 									+'<b>'+unitleft+Highcharts.numberFormat(this.y, settings.decimals).replace(/\.0+$/,'')+unit+'</b>';
 							}
 						}
@@ -1158,12 +1160,12 @@
 					tooltip: {
 						formatters: {
 							unit: function (settings) {
-								var name = this.series.name.replace('Ga:', ''),
+								var name = this.series.name,
 									unit = $.isPlainObject(settings.unit) ? settings.unit[name] || '' : settings.unit,
 									unitleft = $.isPlainObject(settings.unitleft) ? settings.unitleft[name] || '' : settings.unitleft;
 
 								return '<span style="font-size:10px">'+this.x+'</span><br/>'
-									+'<span style="color:#4a4a4a">'+(name.charAt(0).toUpperCase() + name.slice(1))+'</span>: '
+									+'<span style="color:#4a4a4a">'+name+'</span>: '
 									+'<b>'+unitleft+Highcharts.numberFormat(this.y, settings.decimals).replace(/\.0+$/,'')+unit+'</b>';
 							}
 						}
@@ -1217,7 +1219,7 @@
 					tooltip: {
 						formatters: {
 							unit: function (settings) {
-								var name = this.series.name.replace('Ga:', '').replace(/ /g, '_').toLowerCase(),
+								var name = this.series.name.replace(/ /g, '_').toLowerCase(),
 									unit = $.isPlainObject(settings.unit) ? settings.unit[name] || '' : settings.unit,
 									unitleft = $.isPlainObject(settings.unitleft) ? settings.unitleft[name] || '' : settings.unitleft;
 								return (this.x ? '<span style="font-size:10px">'+this.x+'</span><br/>' : '')
